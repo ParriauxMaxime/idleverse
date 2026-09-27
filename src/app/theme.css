@@ -1,0 +1,20 @@
+:root {
+  --ink: #1c1d24;
+  --bg: #17181e;
+  --surface: #23252e;
+  --surface-2: #32343f;
+  --text: #ece7df;
+  --muted: #aaa7b4;
+  --muted-2: #74727f;
+  --yellow: #e6c97a;
+  --orange: #e2a672;
+  --red: #d97b7f;
+  --green: #98c99c;
+  --cyan: #8dbdcb;
+  --pink: #d9a0b8;
+  --violet: #aa9dd2;
+  --accent: var(--cyan);
+  --radius: 1rem;
+  --chunky-shadow: 0 0.2rem 0 rgb(0 0 0 / 25%);
+  --font: "Fredoka Variable", "Fredoka", system-ui, sans-serif;
+}

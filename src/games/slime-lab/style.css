@@ -1,0 +1,692 @@
+body[data-game="slime-lab"] {
+  --lab-ink: #1f1433;
+  --lab-wall: #3d2d63;
+  --lab-tile: #352758;
+  --lab-paper: #f5f8e6;
+  --lab-card: #ffffff;
+  --lab-dish: #e3ead0;
+  --lab-goo: #8fd460;
+  --lab-yellow: #ffd447;
+  --lab-pink: #f59ad0;
+  --lab-red: #f26a5b;
+  --lab-disabled: #e6e2ec;
+  --lab-line: 3px solid var(--lab-ink);
+  --lab-shadow-sm: 0.15rem 0.15rem 0 var(--lab-ink);
+  --lab-shadow: 0.25rem 0.25rem 0 var(--lab-ink);
+  --lab-shadow-lg: 0.4rem 0.4rem 0 var(--lab-ink);
+  --lab-blob-radius: 1rem 0.75rem 1.1rem 0.65rem;
+  --lab-comic: "Bangers", "Fredoka Variable", system-ui, sans-serif;
+
+  --ink: var(--lab-ink);
+  --bg: var(--lab-wall);
+  --surface: var(--lab-paper);
+  --surface-2: var(--lab-dish);
+  --text: #fff8ec;
+  --muted: #5d5275;
+  --muted-2: #938aa8;
+  --green: var(--lab-goo);
+  --yellow: var(--lab-yellow);
+  --red: var(--lab-red);
+
+  background:
+    linear-gradient(var(--lab-tile) 3px, transparent 3px) 0 0 / 4.5rem 4.5rem,
+    linear-gradient(90deg, var(--lab-tile) 3px, transparent 3px) 0 0 / 4.5rem 4.5rem,
+    var(--lab-wall);
+  background-attachment: fixed;
+}
+
+body[data-game="slime-lab"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(255 255 255 / 9%) 0 2px, transparent 2.5px) 0 0 / 12px 12px;
+  mask-image: radial-gradient(circle at 100% 100%, black, transparent 55%);
+}
+
+body[data-game="slime-lab"] :focus-visible {
+  outline: 3px dashed var(--lab-pink);
+  outline-offset: 3px;
+}
+
+/* Nav bar: sticker strip */
+
+body[data-game="slime-lab"] .nav-bar {
+  gap: 0.625rem;
+  padding: 0.75rem 0.75rem 0.875rem;
+}
+
+body[data-game="slime-lab"] :is(.nav-home, .nav-wallet, .nav-chip) {
+  border: var(--lab-line);
+  border-radius: var(--lab-blob-radius);
+  background: var(--lab-paper);
+  color: var(--lab-ink);
+  box-shadow: var(--lab-shadow-sm);
+}
+
+body[data-game="slime-lab"] .nav-home {
+  background: var(--lab-yellow);
+  rotate: -3deg;
+}
+
+body[data-game="slime-lab"] .nav-wallet {
+  padding: 0.3rem 0.875rem 0.4rem;
+  background: var(--lab-goo);
+  font-family: var(--lab-comic);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  rotate: 1deg;
+}
+
+body[data-game="slime-lab"] .nav-chip {
+  padding: 0.3rem 0.625rem 0.4rem;
+  font-family: var(--lab-comic);
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+body[data-game="slime-lab"] .nav-chip:nth-child(even) {
+  rotate: 1.5deg;
+}
+
+body[data-game="slime-lab"] .nav-chip:nth-child(odd) {
+  rotate: -1.5deg;
+}
+
+body[data-game="slime-lab"] .nav-chip-income {
+  font-size: 1rem;
+}
+
+body[data-game="slime-lab"] .nav-chip.is-active {
+  background: var(--accent);
+  box-shadow: var(--lab-shadow);
+  translate: 0 -0.1rem;
+}
+
+/* Game header: comic caption + speech balloon */
+
+body[data-game="slime-lab"] .game-bar {
+  gap: 0.75rem;
+  padding: 0.25rem 1rem 0.75rem;
+}
+
+body[data-game="slime-lab"] .game-bar-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+
+body[data-game="slime-lab"] .game-bar-title {
+  padding: 0.25rem 0.75rem 0.125rem;
+  border: var(--lab-line);
+  background: var(--lab-yellow);
+  color: var(--lab-ink);
+  box-shadow: var(--lab-shadow);
+  font-family: var(--lab-comic);
+  font-size: clamp(1.25rem, 5.2vw, 1.625rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  rotate: -2deg;
+}
+
+body[data-game="slime-lab"] .game-bar-bonuses {
+  position: relative;
+  padding: 0.25rem 0.75rem;
+  border: var(--lab-line);
+  border-radius: 1.25rem;
+  background: var(--lab-card);
+  color: var(--lab-ink);
+  font-size: 0.8125rem;
+}
+
+body[data-game="slime-lab"] .game-bar-bonuses::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 1.5rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-top: var(--lab-line);
+  border-left: var(--lab-line);
+  background: var(--lab-card);
+  transform: rotate(45deg);
+}
+
+body[data-game="slime-lab"] .game-bar-reset {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: var(--lab-line);
+  border-radius: 50% 45% 50% 40%;
+  background: var(--lab-pink);
+  color: var(--lab-ink);
+  box-shadow: var(--lab-shadow);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+body[data-game="slime-lab"] .game-bar-reset:active {
+  transform: translate(0.2rem, 0.2rem);
+  box-shadow: 0 0 0 var(--lab-ink);
+}
+
+body[data-game="slime-lab"] .app-toast {
+  border: var(--lab-line);
+  border-radius: var(--lab-blob-radius);
+  box-shadow: var(--lab-shadow);
+}
+
+/* Game stage */
+
+.game-slime-lab {
+  position: relative;
+  --goo: var(--lab-goo);
+  padding: 0 1rem 0.5rem 0.75rem;
+  color: var(--lab-ink);
+}
+
+.game-slime-lab .resources {
+  align-self: center;
+  justify-self: center;
+  min-width: 15rem;
+  margin: 0 0 0.875rem;
+  padding: 0.25rem 1.5rem 0.5rem;
+  border: 4px solid var(--lab-ink);
+  border-radius: 2.5rem 2rem 2.75rem 1.75rem / 2rem 2.5rem 1.75rem 2.25rem;
+  background: var(--lab-paper);
+  box-shadow: var(--lab-shadow-lg);
+  rotate: -1deg;
+}
+
+.game-slime-lab .resource-amount {
+  font-family: var(--lab-comic);
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--goo);
+  -webkit-text-stroke: 0.4rem var(--lab-ink);
+  paint-order: stroke fill;
+  text-shadow: 0.2rem 0.2rem 0 var(--lab-ink);
+}
+
+.game-slime-lab .resource-label {
+  font-size: 1.5rem;
+  color: var(--lab-card);
+  -webkit-text-stroke-width: 0.3rem;
+  text-shadow: 0.12rem 0.12rem 0 var(--lab-ink);
+}
+
+.game-slime-lab .resource-rate {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.game-slime-lab > .panel {
+  padding: 1rem;
+  border: 4px solid var(--lab-ink);
+  border-radius: 0.5rem;
+  background: var(--lab-paper);
+  box-shadow: var(--lab-shadow-lg);
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-2) transparent;
+}
+
+.game-slime-lab > .panel[hidden] {
+  display: none;
+}
+
+/* Lab panel */
+
+.game-slime-lab .lab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game-slime-lab .lab .shop {
+  align-self: stretch;
+}
+
+.game-slime-lab .big-slime {
+  position: relative;
+  width: 9rem;
+  height: 6.75rem;
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+  border: 4px solid var(--lab-ink);
+  border-radius: 50% 50% 42% 42% / 68% 68% 32% 32%;
+  background:
+    radial-gradient(1rem 0.6rem at 26% 24%, var(--lab-card) 92%, transparent),
+    radial-gradient(0.4rem 0.25rem at 45% 17%, var(--lab-card) 88%, transparent),
+    radial-gradient(0.75rem 0.45rem at 50% 70%, var(--lab-ink) 92%, transparent),
+    radial-gradient(0.7rem 0.4rem at 22% 66%, rgb(245 110 160 / 55%) 92%, transparent),
+    radial-gradient(0.7rem 0.4rem at 78% 66%, rgb(245 110 160 / 55%) 92%, transparent),
+    var(--goo);
+  box-shadow:
+    inset -0.7rem -0.6rem 0 rgb(31 20 51 / 14%),
+    0.35rem 0.35rem 0 var(--lab-ink);
+  transform-origin: bottom center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game-slime-lab .big-slime::before,
+.game-slime-lab .big-slime::after {
+  content: "";
+  position: absolute;
+  top: 34%;
+  width: 1.1rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 30%, var(--lab-card) 0 0.18rem, transparent 0.2rem),
+    var(--lab-ink);
+}
+
+.game-slime-lab .big-slime::before {
+  left: 29%;
+}
+
+.game-slime-lab .big-slime::after {
+  right: 29%;
+}
+
+.game-slime-lab .big-slime.squish {
+  animation: slime-squish 0.35s ease-out;
+}
+
+@keyframes slime-squish {
+  0% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.25, 0.75);
+  }
+  55% {
+    transform: scale(0.9, 1.12);
+  }
+  80% {
+    transform: scale(1.05, 0.96);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.game-slime-lab .merge-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.625rem;
+  width: 100%;
+  max-width: 18rem;
+}
+
+.game-slime-lab .slot {
+  position: relative;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: var(--lab-line);
+  border-radius: 48% 48% 38% 38% / 58% 58% 42% 42%;
+  background:
+    radial-gradient(0.45rem 0.3rem at 28% 24%, var(--lab-card) 88%, transparent),
+    var(--slime-color);
+  box-shadow:
+    inset -0.4rem -0.35rem 0 rgb(31 20 51 / 14%),
+    var(--lab-shadow-sm);
+  font-size: 1.625rem;
+  transition: transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game-slime-lab .slot.empty {
+  border: 3px dashed var(--muted-2);
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 58%, rgb(31 20 51 / 6%) 60%), var(--lab-dish);
+  box-shadow: none;
+}
+
+.game-slime-lab .slot.selected {
+  transform: scale(1.1) rotate(-4deg);
+  outline: 3px dashed var(--lab-ink);
+  outline-offset: 3px;
+}
+
+.game-slime-lab .slot.merged {
+  animation: slot-pop 0.4s ease-out;
+}
+
+.game-slime-lab .slot.match {
+  animation: slot-wiggle 0.6s ease-in-out infinite;
+}
+
+.game-slime-lab .slot-level {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.4rem;
+  display: grid;
+  place-items: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 2px solid var(--lab-paper);
+  border-radius: 50%;
+  background: var(--lab-ink);
+  color: var(--lab-card);
+  font-family: var(--lab-comic);
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+@keyframes slot-wiggle {
+  50% {
+    transform: scale(1.06, 0.94);
+  }
+}
+
+@keyframes slot-pop {
+  0% {
+    transform: scale(0.4);
+  }
+  60% {
+    transform: scale(1.2, 0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.game-slime-lab .hint {
+  position: relative;
+  margin: 0.25rem 0 0;
+  padding: 0.4rem 0.875rem;
+  border: var(--lab-line);
+  border-radius: 1.25rem;
+  background: var(--lab-card);
+  color: var(--lab-ink);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.game-slime-lab .hint::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-top: var(--lab-line);
+  border-left: var(--lab-line);
+  background: var(--lab-card);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Shop: sticker buttons */
+
+.game-slime-lab .shop {
+  gap: 0.875rem;
+}
+
+.game-slime-lab .shop-item {
+  gap: 0.125rem 0.75rem;
+  padding: 0.625rem 0.875rem 0.7rem;
+  border: var(--lab-line);
+  border-radius: var(--lab-blob-radius);
+  background: var(--lab-card);
+  color: var(--lab-ink);
+  box-shadow: var(--lab-shadow);
+}
+
+.game-slime-lab .shop-item:not(:disabled):active {
+  transform: translate(0.2rem, 0.2rem);
+  box-shadow: 0.05rem 0.05rem 0 var(--lab-ink);
+}
+
+.game-slime-lab .shop-item-name {
+  font-family: var(--lab-comic);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+.game-slime-lab .shop-item-details {
+  color: var(--muted);
+}
+
+.game-slime-lab .shop-item-cost {
+  padding: 0.2rem 0.6rem 0.1rem;
+  border: var(--lab-line);
+  border-radius: 0.5rem 0.75rem 0.5rem 0.8rem;
+  background: var(--lab-yellow);
+  box-shadow: var(--lab-shadow-sm);
+  font-family: var(--lab-comic);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  rotate: 4deg;
+}
+
+.game-slime-lab .shop-item:disabled {
+  border-style: dashed;
+  border-color: var(--muted-2);
+  background: var(--lab-disabled);
+  color: var(--muted);
+  opacity: 1;
+}
+
+.game-slime-lab .shop-item:disabled .shop-item-cost {
+  border-color: var(--muted-2);
+  background: var(--lab-card);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* Bestiary: sticker album */
+
+.game-slime-lab .bestiary-count {
+  margin: 0 0 1rem;
+  font-family: var(--lab-comic);
+  font-size: 1.375rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: var(--lab-ink);
+}
+
+.game-slime-lab .bestiary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.game-slime-lab .species {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 0.75rem;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border: var(--lab-line);
+  border-radius: var(--lab-blob-radius);
+  background: var(--lab-card);
+  box-shadow: var(--lab-shadow-sm);
+}
+
+.game-slime-lab .species-blob {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 2.75rem;
+  border: var(--lab-line);
+  border-radius: 50% 50% 40% 40% / 62% 62% 38% 38%;
+  background:
+    radial-gradient(0.35rem 0.22rem at 28% 26%, var(--lab-card) 88%, transparent),
+    var(--slime-color);
+  box-shadow: inset -0.3rem -0.3rem 0 rgb(31 20 51 / 14%);
+  font-size: 1.375rem;
+}
+
+.game-slime-lab .species-name {
+  font-family: var(--lab-comic);
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+.game-slime-lab .species-details {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.game-slime-lab .species.unknown {
+  border-style: dashed;
+  border-color: var(--muted-2);
+  background: transparent;
+  box-shadow: none;
+}
+
+.game-slime-lab .species.unknown .species-blob {
+  border-color: var(--muted-2);
+  background: var(--lab-disabled);
+  box-shadow: none;
+  filter: grayscale(1);
+}
+
+.game-slime-lab .species.unknown .species-name {
+  color: var(--muted-2);
+}
+
+/* New species: comic shout balloon */
+
+.game-slime-lab .toast {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  z-index: 2;
+  padding: 0.5rem 1.25rem 0.375rem;
+  border: 4px solid var(--lab-ink);
+  border-radius: 2rem 1.5rem 2.25rem 1.25rem;
+  background: var(--slime-color, var(--goo));
+  color: var(--lab-ink);
+  box-shadow: var(--lab-shadow-lg);
+  font-family: var(--lab-comic);
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  rotate: -3deg;
+  transform: translate(-50%, -150%);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.game-slime-lab .toast.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Tabs: sticker buttons */
+
+.game-slime-lab .tabs {
+  gap: 0.75rem;
+  padding: 0.875rem 0 0.25rem;
+}
+
+.game-slime-lab .tabs [role="tab"] {
+  padding: 0.5rem 0.25rem 0.375rem;
+  border: var(--lab-line);
+  border-radius: var(--lab-blob-radius);
+  background: var(--lab-paper);
+  color: var(--lab-ink);
+  box-shadow: var(--lab-shadow-sm);
+  font-family: var(--lab-comic);
+  font-size: clamp(0.95rem, 4.2vw, 1.25rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.game-slime-lab .tabs [role="tab"][aria-selected="true"] {
+  background: var(--goo);
+  box-shadow: var(--lab-shadow);
+  rotate: -2deg;
+  translate: 0 -0.15rem;
+}
+
+@media (hover: hover) {
+  .game-slime-lab .shop-item:not(:disabled):hover {
+    filter: none;
+    transform: translate(-0.1rem, -0.1rem);
+    box-shadow: 0.35rem 0.35rem 0 var(--lab-ink);
+  }
+
+  .game-slime-lab .shop-item:not(:disabled):active {
+    transform: translate(0.2rem, 0.2rem);
+    box-shadow: 0.05rem 0.05rem 0 var(--lab-ink);
+  }
+}
+
+@media (min-width: 60rem) {
+  body[data-game="slime-lab"] .game-bar-bonuses::before {
+    top: 50%;
+    left: -0.5rem;
+    border-top: none;
+    border-bottom: var(--lab-line);
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .game-slime-lab {
+    gap: 0.5rem 1.5rem;
+    padding: 0 1.25rem 1.25rem 1rem;
+  }
+
+  .game-slime-lab > .panel {
+    padding-top: 0;
+  }
+
+  .game-slime-lab > .panel[hidden] {
+    display: block;
+  }
+
+  .game-slime-lab > .lab[hidden] {
+    display: flex;
+  }
+
+  .game-slime-lab > .panel::before {
+    display: block;
+    width: fit-content;
+    margin: 0 0 1rem -1rem;
+    padding: 0.3rem 0.875rem 0.2rem;
+    border-right: var(--lab-line);
+    border-bottom: var(--lab-line);
+    background: var(--lab-yellow);
+    font-family: var(--lab-comic);
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+  }
+
+  .game-slime-lab > .lab::before {
+    content: "La paillasse";
+    align-self: flex-start;
+    margin-bottom: 0;
+  }
+
+  .game-slime-lab > .upgrades::before {
+    content: "Le bazar du labo";
+    background: var(--lab-pink);
+  }
+
+  .game-slime-lab > .bestiary::before {
+    content: "Le bestiaire";
+    background: var(--lab-goo);
+  }
+}

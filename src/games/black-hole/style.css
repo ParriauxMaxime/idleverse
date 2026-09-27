@@ -1,0 +1,685 @@
+body[data-game="black-hole"] {
+  --bg: #05070c;
+  --ink: #05070c;
+  --surface: #0a0e17;
+  --surface-2: #1a2131;
+  --text: #dce2ec;
+  --muted: #8a94a9;
+  --muted-2: #56607a;
+  --radius: 0;
+  --chunky-shadow: none;
+  --font: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+  --bh-mono: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --bh-amber: #e2a672;
+  --bh-amber-soft: rgb(226 166 114 / 45%);
+  --bh-amber-wash: rgb(226 166 114 / 8%);
+  --bh-ice: #a7b8d2;
+  --bh-line: rgb(160 180 215 / 15%);
+  --bh-line-strong: rgb(185 200 228 / 45%);
+  --bh-panel: rgb(8 11 19 / 82%);
+  --bh-chamfer: 0.625rem;
+  --bh-bracket: 0.625rem;
+  --bh-brackets:
+    linear-gradient(var(--bh-line-strong) 0 0) left top / var(--bh-bracket) 1px no-repeat,
+    linear-gradient(var(--bh-line-strong) 0 0) left top / 1px var(--bh-bracket) no-repeat,
+    linear-gradient(var(--bh-line-strong) 0 0) right top / var(--bh-bracket) 1px no-repeat,
+    linear-gradient(var(--bh-line-strong) 0 0) right top / 1px var(--bh-bracket) no-repeat,
+    linear-gradient(var(--bh-line-strong) 0 0) left bottom / var(--bh-bracket) 1px no-repeat,
+    linear-gradient(var(--bh-line-strong) 0 0) left bottom / 1px var(--bh-bracket) no-repeat,
+    linear-gradient(var(--bh-line-strong) 0 0) right bottom / var(--bh-bracket) 1px no-repeat,
+    linear-gradient(var(--bh-line-strong) 0 0) right bottom / 1px var(--bh-bracket) no-repeat;
+  --bh-label: 400 0.6875rem/1.4 var(--bh-mono);
+  background:
+    radial-gradient(ellipse 80% 55% at 85% 0%, rgb(64 80 128 / 16%), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 0% 55%, rgb(110 84 110 / 9%), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+body[data-game="black-hole"]::before,
+body[data-game="black-hole"]::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+}
+
+body[data-game="black-hole"]::after {
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgb(255 255 255 / 75%), transparent),
+    radial-gradient(1px 1px at 63% 41%, rgb(220 230 255 / 55%), transparent),
+    radial-gradient(1px 1px at 38% 77%, rgb(255 240 220 / 60%), transparent),
+    radial-gradient(1.5px 1.5px at 81% 9%, rgb(255 255 255 / 70%), transparent),
+    radial-gradient(1px 1px at 27% 52%, rgb(255 255 255 / 40%), transparent),
+    radial-gradient(1px 1px at 91% 66%, rgb(210 225 255 / 45%), transparent),
+    radial-gradient(1px 1px at 55% 93%, rgb(255 255 255 / 35%), transparent),
+    radial-gradient(1.5px 1.5px at 7% 88%, rgb(255 235 210 / 55%), transparent),
+    radial-gradient(1px 1px at 72% 24%, rgb(255 255 255 / 30%), transparent);
+  background-size:
+    197px 211px,
+    263px 241px,
+    331px 307px,
+    419px 443px,
+    151px 167px,
+    373px 389px,
+    229px 277px,
+    503px 467px,
+    127px 139px;
+}
+
+body[data-game="black-hole"]::before {
+  z-index: -1;
+  width: max(22rem, 62vmin);
+  aspect-ratio: 1;
+  left: calc(max(22rem, 62vmin) * -0.42);
+  bottom: calc(max(22rem, 62vmin) * -0.38);
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(
+      -24deg,
+      rgb(200 215 240 / 3%) 0 0.4rem,
+      transparent 0.4rem 1.1rem,
+      rgb(10 14 24 / 12%) 1.1rem 1.9rem,
+      transparent 1.9rem 3.1rem
+    ),
+    radial-gradient(circle at 74% 24%, #43506c 0%, #29324a 20%, #131a2a 44%, #070a11 68%);
+  box-shadow: inset -2px 2px 1px rgb(196 210 238 / 30%);
+  opacity: 0.85;
+}
+
+body[data-game="black-hole"] .nav-bar {
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--bh-line);
+  background: rgb(5 7 12 / 72%);
+}
+
+body[data-game="black-hole"] .nav-home,
+body[data-game="black-hole"] .nav-chip {
+  border-radius: 0;
+  background: var(--bh-panel);
+  box-shadow: inset 0 0 0 1px var(--bh-line);
+}
+
+body[data-game="black-hole"] .nav-home {
+  padding: 0 0.875rem;
+  font-size: 0;
+}
+
+body[data-game="black-hole"] .nav-home::before {
+  content: "⌂";
+  font-size: 1.375rem;
+  line-height: 1;
+  color: var(--bh-ice);
+}
+
+body[data-game="black-hole"] .nav-chip {
+  min-width: 6.5rem;
+  padding: 0.375rem 0.625rem 0.4375rem;
+  border-bottom: 0;
+  box-shadow:
+    inset 2px 0 0 var(--accent),
+    inset 0 0 0 1px var(--bh-line);
+  font: 400 0.875rem/1.3 var(--bh-mono);
+  color: var(--text);
+}
+
+body[data-game="black-hole"] .nav-chip-emoji {
+  font-size: 1rem;
+}
+
+body[data-game="black-hole"] .nav-chip-income {
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+
+body[data-game="black-hole"] .nav-wallet {
+  padding: 0.375rem 0.75rem 0.4375rem;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--bh-amber) 9%, var(--bh-panel));
+  box-shadow:
+    inset 0 -2px 0 var(--bh-amber),
+    inset 0 0 0 1px var(--bh-amber-soft);
+  font: 700 0.875rem/1.3 var(--bh-mono);
+  color: var(--bh-amber);
+}
+
+body[data-game="black-hole"] .nav-chip.is-active {
+  background: color-mix(in srgb, var(--accent) 10%, var(--bh-panel));
+  box-shadow:
+    inset 0 2px 0 var(--accent),
+    inset 0 0 0 1px color-mix(in srgb, var(--accent) 55%, transparent);
+  color: var(--accent);
+}
+
+body[data-game="black-hole"] .game-bar {
+  gap: 0.75rem;
+  padding: 0.75rem 0.75rem 0.5rem;
+}
+
+body[data-game="black-hole"] .game-bar-heading {
+  min-width: 0;
+}
+
+body[data-game="black-hole"] .game-bar-heading::before {
+  content: "Sgr A* · AD 17h 45m 40s · Déc −29° 00′ 28″";
+  display: block;
+  margin-bottom: 0.125rem;
+  font: var(--bh-label);
+  letter-spacing: 0.04em;
+  color: var(--muted-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body[data-game="black-hole"] .game-bar-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+body[data-game="black-hole"] .game-bar-bonuses {
+  margin-top: 0.125rem;
+  font: var(--bh-label);
+  color: #9cc3a6;
+}
+
+body[data-game="black-hole"] .game-bar-bonuses::before {
+  content: "▲ ";
+  font-size: 0.5rem;
+  vertical-align: 0.125em;
+}
+
+body[data-game="black-hole"] .game-bar-reset {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: var(--bh-panel);
+  box-shadow: inset 0 0 0 1px var(--bh-line-strong);
+  color: var(--bh-ice);
+  font-family: var(--bh-mono);
+  clip-path: polygon(0 0, calc(100% - 0.5rem) 0, 100% 0.5rem, 100% 100%, 0 100%);
+}
+
+body[data-game="black-hole"] .app-toast {
+  border-radius: 0;
+  background: #0b0f19;
+  color: var(--bh-amber);
+  box-shadow: inset 0 0 0 1px var(--bh-amber-soft);
+  font: 400 0.875rem/1.4 var(--bh-mono);
+}
+
+body[data-game="black-hole"] :focus-visible {
+  outline: 1px solid var(--bh-amber);
+  outline-offset: 3px;
+}
+
+.game-black-hole {
+  padding: 0 0.75rem;
+}
+
+.game-black-hole .resources {
+  position: relative;
+  margin: 0.25rem 0 0.75rem;
+  padding: 0.625rem 1rem 0.75rem;
+  background: var(--bh-brackets);
+}
+
+.game-black-hole .resources::before {
+  content: "Masse absorbée";
+  display: block;
+  font: var(--bh-label);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.game-black-hole .resource-amount {
+  font-family: var(--bh-mono);
+  font-size: clamp(1.75rem, 8.5vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--bh-amber);
+}
+
+.game-black-hole .resource-rate {
+  font: 400 0.8125rem/1.5 var(--bh-mono);
+  letter-spacing: 0.08em;
+  color: var(--bh-ice);
+}
+
+.game-black-hole .resource-rate::before {
+  content: "Revenus · ";
+  text-transform: uppercase;
+}
+
+.game-black-hole .resource-wallet {
+  position: absolute;
+  top: 0.625rem;
+  right: 1rem;
+  font: 700 0.9375rem/1.4 var(--bh-mono);
+  text-align: right;
+  color: var(--bh-amber);
+}
+
+.game-black-hole .resource-wallet::before {
+  content: "Solde";
+  display: block;
+  font: var(--bh-label);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.game-black-hole .panel {
+  margin-bottom: 0.5rem;
+  padding: 0.625rem 0.875rem 1rem;
+  background: var(--bh-brackets), var(--bh-panel);
+  box-shadow: inset 0 0 0 1px var(--bh-line);
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-2) transparent;
+}
+
+.game-black-hole .panel::before {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--bh-line);
+  font: var(--bh-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--muted);
+}
+
+.game-black-hole .hole-panel::before {
+  content: "Obs·01 — Horizon";
+}
+
+.game-black-hole .shop-panel::before {
+  content: "Mod·02 — Modules de capture";
+}
+
+.game-black-hole .hole-panel:not([hidden]) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  text-align: center;
+}
+
+.game-black-hole .tier-name {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.game-black-hole .tier-flavor {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.game-black-hole .tier-next,
+.game-black-hole .shop-locked {
+  margin: 0;
+  font: 400 0.75rem/1.5 var(--bh-mono);
+  color: var(--muted);
+}
+
+.game-black-hole .shop-locked:not(:empty) {
+  margin-top: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px dashed var(--bh-line-strong);
+  text-align: center;
+}
+
+.game-black-hole .shop-locked:empty {
+  display: none;
+}
+
+.game-black-hole .stage {
+  --hole-min: 4rem;
+  --hole-max: min(50vw, 34dvh, 18rem);
+  --hole-size: calc(var(--hole-min) + var(--growth, 0) * (var(--hole-max) - var(--hole-min)));
+  --orbit: calc(var(--hole-size) * 0.5 + 3rem);
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: calc(var(--hole-max) + 5rem);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(var(--bh-line) 0 0) center / 100% 1px no-repeat,
+    linear-gradient(var(--bh-line) 0 0) center / 1px 100% no-repeat;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.game-black-hole .stage::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--orbit) * 2);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(var(--bh-line-strong) 0 0.6deg, transparent 0.6deg 30deg),
+    repeating-conic-gradient(var(--bh-line) 0 0.5deg, transparent 0.5deg 5deg);
+  mask: radial-gradient(circle closest-side, transparent calc(100% - 0.625rem), #000 calc(100% - 0.625rem));
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease-out;
+  pointer-events: none;
+}
+
+.game-black-hole .stage::after {
+  content: "Champ 01 · λ 1,3 mm";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.25rem;
+  font: var(--bh-label);
+  letter-spacing: 0.08em;
+  color: var(--muted-2);
+  pointer-events: none;
+}
+
+.game-black-hole .black-hole {
+  position: relative;
+  isolation: isolate;
+  width: var(--hole-size);
+  aspect-ratio: 1;
+  min-width: 4rem;
+  padding: 0;
+  border-radius: 50%;
+  background: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: width 0.4s ease-out, transform 0.08s;
+}
+
+.game-black-hole .black-hole:active {
+  transform: scale(0.95);
+}
+
+.game-black-hole .black-hole::before,
+.game-black-hole .black-hole::after,
+.game-black-hole .accretion-disk {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.game-black-hole .black-hole::before {
+  content: "";
+  inset: -14%;
+  z-index: 0;
+  background:
+    radial-gradient(
+      circle closest-side,
+      transparent 77.5%,
+      rgb(248 222 184 / 62%) 79%,
+      rgb(226 166 114 / 24%) 83%,
+      rgb(226 166 114 / 6%) 88%,
+      transparent 92%
+    );
+}
+
+.game-black-hole .black-hole::after {
+  content: "";
+  inset: 0;
+  z-index: 1;
+  background: #020306;
+  box-shadow: 0 0 0 1px rgb(244 214 170 / 55%);
+}
+
+.game-black-hole .accretion-disk {
+  left: 50%;
+  top: 50%;
+  width: 205%;
+  height: 30%;
+  background: radial-gradient(
+    closest-side,
+    transparent 47%,
+    rgb(250 226 190 / 80%) 49%,
+    rgb(232 176 124 / 48%) 60%,
+    rgb(190 120 90 / 14%) 77%,
+    transparent 90%
+  );
+  transform: translate(-50%, -50%) rotate(-9deg);
+}
+
+.game-black-hole .accretion-disk.is-back {
+  z-index: 0;
+}
+
+.game-black-hole .accretion-disk.is-front {
+  z-index: 2;
+  clip-path: inset(50% 0 0 0);
+}
+
+.game-black-hole .debris {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  font-size: 1.5rem;
+  line-height: 1;
+  pointer-events: none;
+  animation: black-hole-spiral 0.9s ease-in forwards;
+}
+
+.game-black-hole .gain {
+  position: absolute;
+  z-index: 4;
+  font: 700 0.9375rem/1 var(--bh-mono);
+  color: var(--bh-amber);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: black-hole-float 0.8s ease-out forwards;
+}
+
+.game-black-hole .tier-progress {
+  width: 100%;
+  height: 0.625rem;
+  margin-top: 0.25rem;
+  padding: 2px;
+  background:
+    repeating-linear-gradient(90deg, var(--bh-line-strong) 0 1px, transparent 1px 10%) left bottom / 100% 3px no-repeat,
+    rgb(2 3 6 / 60%);
+  box-shadow: inset 0 0 0 1px var(--bh-line);
+}
+
+.game-black-hole .tier-progress-bar {
+  height: 100%;
+  background: var(--bh-amber);
+  transition: width 0.2s;
+}
+
+.game-black-hole .shop {
+  counter-reset: bh-module;
+  gap: 0.5rem;
+}
+
+.game-black-hole .shop-item {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.125rem 0.875rem;
+  padding: 0.75rem 0.875rem 0.75rem 0.75rem;
+  border: 0;
+  background:
+    linear-gradient(to bottom left, transparent calc(50% - 0.5px), var(--bh-line-strong) 50%, transparent calc(50% + 0.5px))
+      right top / var(--bh-chamfer) var(--bh-chamfer) no-repeat,
+    rgb(12 16 26 / 92%);
+  box-shadow:
+    inset 2px 0 0 var(--bh-amber),
+    inset 0 0 0 1px var(--bh-line);
+  clip-path: polygon(0 0, calc(100% - var(--bh-chamfer)) 0, 100% var(--bh-chamfer), 100% 100%, 0 100%);
+  transition:
+    background-color 0.15s,
+    transform 0.08s ease-out;
+}
+
+.game-black-hole .shop-item::before {
+  counter-increment: bh-module;
+  content: counter(bh-module, decimal-leading-zero);
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  padding-right: 0.75rem;
+  border-right: 1px solid var(--bh-line);
+  font: var(--bh-label);
+  color: var(--bh-amber);
+}
+
+.game-black-hole .shop-item-name {
+  grid-column: 2;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.game-black-hole .shop-item-details {
+  grid-column: 2;
+  font: 400 0.75rem/1.5 var(--bh-mono);
+  color: var(--muted);
+}
+
+.game-black-hole .shop-item-cost {
+  grid-column: 3;
+  min-width: 3.5rem;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0;
+  background: var(--bh-amber-wash);
+  box-shadow: inset 0 0 0 1px var(--bh-amber-soft);
+  color: var(--bh-amber);
+  font: 700 0.875rem/1.3 var(--bh-mono);
+  text-align: right;
+}
+
+.game-black-hole .shop-item:not(:disabled):active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 2px 0 0 var(--bh-amber),
+    inset 0 0 0 1px var(--bh-amber-soft);
+}
+
+.game-black-hole .shop-item:disabled {
+  box-shadow: inset 0 0 0 1px var(--bh-line);
+  opacity: 0.5;
+}
+
+.game-black-hole .shop-item:disabled::before {
+  color: var(--muted-2);
+}
+
+.game-black-hole .shop-item:disabled .shop-item-cost {
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--bh-line);
+  color: var(--muted);
+}
+
+.game-black-hole .tabs {
+  counter-reset: bh-tab;
+  gap: 0.375rem;
+  padding: 0.25rem 0 calc(0.625rem + env(safe-area-inset-bottom));
+}
+
+.game-black-hole .tabs [role="tab"] {
+  padding: 0.875rem 0.25rem;
+  background: var(--bh-panel);
+  box-shadow: inset 0 0 0 1px var(--bh-line);
+  font: 400 0.8125rem/1.2 var(--bh-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.game-black-hole .tabs [role="tab"]::before {
+  counter-increment: bh-tab;
+  content: counter(bh-tab, decimal-leading-zero) " ";
+  color: var(--muted-2);
+}
+
+.game-black-hole .tabs [role="tab"][aria-selected="true"] {
+  background: color-mix(in srgb, var(--bh-amber) 9%, var(--bh-panel));
+  box-shadow:
+    inset 0 2px 0 var(--bh-amber),
+    inset 0 0 0 1px var(--bh-amber-soft);
+  color: var(--bh-amber);
+}
+
+.game-black-hole .tabs [role="tab"][aria-selected="true"]::before {
+  color: inherit;
+}
+
+@media (hover: hover) {
+  body[data-game="black-hole"] .nav-home:hover,
+  body[data-game="black-hole"] .nav-chip:hover,
+  body[data-game="black-hole"] .game-bar-reset:hover {
+    filter: none;
+    background-color: #111827;
+  }
+
+  .game-black-hole .shop-item:not(:disabled):hover {
+    filter: none;
+    background-color: rgb(20 26 40 / 95%);
+  }
+
+  .game-black-hole .black-hole:hover {
+    filter: none;
+  }
+}
+
+@media (max-width: 25rem) {
+  .game-black-hole .shop-item {
+    column-gap: 0.625rem;
+    padding-right: 0.625rem;
+  }
+
+  .game-black-hole .shop-item::before {
+    padding-right: 0.5rem;
+  }
+}
+
+@media (min-width: 60rem) {
+  .game-black-hole {
+    padding: 0 1rem 1rem;
+  }
+
+  .game-black-hole .panel {
+    margin-bottom: 0;
+  }
+
+  .game-black-hole .resources {
+    margin-bottom: 1rem;
+  }
+}
+
+@keyframes black-hole-spiral {
+  from {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--orbit)) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(calc(var(--angle) + 540deg)) translateX(0) scale(0.1);
+    opacity: 0;
+  }
+}
+
+@keyframes black-hole-float {
+  to {
+    transform: translate(-50%, -250%);
+    opacity: 0;
+  }
+}

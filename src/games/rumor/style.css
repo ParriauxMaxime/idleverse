@@ -1,0 +1,710 @@
+body[data-game="rumor"] {
+  --rumor-paper: #efe7d4;
+  --rumor-paper-light: #f8f3e6;
+  --rumor-paper-dark: #ddd2b8;
+  --rumor-ink: #221c19;
+  --rumor-ink-soft: #4d443c;
+  --rumor-ink-faded: #83776a;
+  --rumor-blood: #9b2a22;
+  --rumor-postit: #f3dd78;
+  --rumor-postit-dark: #d9bf52;
+  --rumor-tape: rgb(226 212 170 / 78%);
+  --rumor-desk: #3a2e27;
+  --rumor-headline: "Playfair Display Variable", Georgia, "Times New Roman", serif;
+  --rumor-typewriter: "Special Elite", "Courier New", monospace;
+  --rumor-hand: "Caveat Variable", "Bradley Hand", cursive;
+  --rumor-offset: 0.2rem 0.2rem 0 var(--rumor-ink);
+  --rumor-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .18 0 0 0 0 .1 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --rumor-halftone: radial-gradient(circle, currentColor 32%, transparent 36%);
+
+  --bg: var(--rumor-desk);
+  --surface: var(--rumor-paper-light);
+  --surface-2: var(--rumor-paper-dark);
+  --text: var(--rumor-ink);
+  --muted: var(--rumor-ink-soft);
+  --muted-2: var(--rumor-ink-faded);
+  --ink: var(--rumor-ink);
+  --paper: var(--rumor-paper-light);
+  --red: var(--rumor-blood);
+  --yellow: var(--rumor-postit);
+  --green: var(--rumor-ink-soft);
+  --radius: 0.125rem;
+  --chunky-shadow: var(--rumor-offset);
+  --font: var(--rumor-headline);
+
+  background:
+    var(--rumor-grain),
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 6%) 0 2px, transparent 2px 9px, rgb(255 255 255 / 2%) 9px 10px, transparent 10px 23px),
+    var(--rumor-desk);
+  color: var(--rumor-ink);
+}
+
+body[data-game="rumor"] #app {
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 55%, rgb(120 90 50 / 14%)),
+    radial-gradient(circle at 92% 62%, transparent 3.1rem, rgb(130 85 40 / 10%) 3.25rem, rgb(130 85 40 / 4%) 3.6rem, transparent 3.7rem),
+    var(--rumor-grain),
+    var(--rumor-paper);
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 30%),
+    0 1.5rem 3rem rgb(0 0 0 / 45%);
+}
+
+body[data-game="rumor"] :focus-visible {
+  outline: 2px dashed var(--rumor-blood);
+  outline-offset: 3px;
+}
+
+body[data-game="rumor"] .nav-bar {
+  align-items: stretch;
+  margin: 0 0.75rem;
+  padding: 0.625rem 0 0.5rem;
+  border-bottom: 1px solid var(--rumor-ink);
+}
+
+body[data-game="rumor"] .nav-home,
+body[data-game="rumor"] .nav-chip {
+  border: 1px solid var(--rumor-ink);
+  border-radius: 0;
+  background: var(--rumor-paper-light);
+  box-shadow: 0.125rem 0.125rem 0 var(--rumor-ink);
+  color: var(--rumor-ink);
+}
+
+body[data-game="rumor"] .nav-home {
+  color: transparent;
+  text-shadow: 0 0 0 var(--rumor-ink);
+}
+
+body[data-game="rumor"] .nav-chip {
+  font-family: var(--rumor-typewriter);
+  font-weight: 400;
+}
+
+body[data-game="rumor"] .nav-chip {
+  border-bottom: 3px solid color-mix(in srgb, var(--accent) 70%, var(--rumor-ink));
+}
+
+body[data-game="rumor"] .nav-chip-income {
+  font-size: 0.8125rem;
+}
+
+body[data-game="rumor"] .nav-chip.is-active {
+  border-bottom-color: var(--rumor-blood);
+  background: var(--rumor-ink);
+  color: var(--rumor-paper-light);
+}
+
+body[data-game="rumor"] .nav-wallet {
+  padding: 0.375rem 0.75rem;
+  border: 2px solid var(--rumor-blood);
+  border-radius: 0;
+  background: var(--rumor-paper-light);
+  box-shadow: 0.125rem 0.125rem 0 var(--rumor-ink);
+  color: var(--rumor-blood);
+  font-family: var(--rumor-typewriter);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+body[data-game="rumor"] .game-bar {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr 2.5rem;
+  align-items: center;
+  margin: 0 0.75rem;
+  padding: 0.375rem 0 0.25rem;
+  border-bottom: 4px double var(--rumor-ink);
+}
+
+body[data-game="rumor"] .game-bar::before {
+  content: "";
+  font-family: var(--rumor-typewriter);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre;
+}
+
+body[data-game="rumor"] .game-bar-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  text-align: center;
+}
+
+body[data-game="rumor"] .game-bar-heading::before {
+  content: "Le quotidien qui ne dément jamais";
+  font-family: var(--rumor-typewriter);
+  font-size: 0.6875rem;
+  color: var(--rumor-ink-faded);
+  letter-spacing: 0.05em;
+}
+
+body[data-game="rumor"] .game-bar-title {
+  font-family: var(--rumor-headline);
+  font-size: clamp(1.5rem, 6.8vw, 3.25rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--rumor-ink);
+  filter: grayscale(1) contrast(1.3);
+}
+
+body[data-game="rumor"] .game-bar-bonuses {
+  margin-top: 0.25rem;
+  padding-top: 0.1875rem;
+  border-top: 1px solid var(--rumor-ink);
+  font-family: var(--rumor-typewriter);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--rumor-blood);
+}
+
+body[data-game="rumor"] .game-bar-bonuses::before {
+  content: "Édition spéciale — ";
+  color: var(--rumor-ink-soft);
+}
+
+body[data-game="rumor"] .game-bar-reset {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--rumor-ink);
+  border-radius: 50%;
+  background: var(--rumor-paper-light);
+  box-shadow: 0.125rem 0.125rem 0 var(--rumor-ink);
+  color: var(--rumor-ink);
+  font-family: var(--rumor-typewriter);
+  justify-self: end;
+}
+
+body[data-game="rumor"] .game-bar-reset:active {
+  transform: translate(0.125rem, 0.125rem);
+  box-shadow: none;
+}
+
+body[data-game="rumor"] .app-toast {
+  border-radius: 0;
+  background: linear-gradient(135deg, var(--rumor-postit) 88%, var(--rumor-postit-dark) 88%);
+  color: var(--rumor-ink);
+  font-family: var(--rumor-hand);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.15;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 25%);
+}
+
+.game-rumor {
+  position: relative;
+  color: var(--rumor-ink);
+}
+
+.game-rumor .resources {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.875rem 1rem 0.5rem;
+}
+
+.game-rumor .resources::before {
+  content: "Dernière heure";
+  padding: 0 0.5rem;
+  background: var(--rumor-blood);
+  color: var(--rumor-paper-light);
+  font-family: var(--rumor-typewriter);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.game-rumor .resource-amount {
+  font-family: var(--rumor-headline);
+  font-size: clamp(2.75rem, 12vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--rumor-ink);
+}
+
+.game-rumor .resource-rate {
+  font-family: var(--rumor-headline);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--rumor-ink-soft);
+}
+
+.game-rumor .resource-income {
+  margin-top: 0.375rem;
+  padding: 0.0625rem 0.625rem;
+  border: 2px solid var(--rumor-blood);
+  color: var(--rumor-blood);
+  font-family: var(--rumor-typewriter);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  transform: rotate(-2deg);
+}
+
+.game-rumor .rumor-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  text-align: center;
+}
+
+.game-rumor .rumor-main[hidden] {
+  display: none;
+}
+
+.game-rumor .rumor-scope {
+  align-self: center;
+  margin: 0;
+  padding: 0.125rem 0.875rem;
+  background: var(--rumor-ink);
+  color: var(--rumor-paper-light);
+  font-family: var(--rumor-headline);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  clip-path: polygon(0.5rem 0, calc(100% - 0.5rem) 0, 100% 50%, calc(100% - 0.5rem) 100%, 0.5rem 100%, 0 50%);
+}
+
+.game-rumor .rumor-text {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 9rem;
+  margin: 0.75rem 0.5rem 0;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background:
+    linear-gradient(var(--rumor-ink), var(--rumor-ink)) top 0.75rem left 1.25rem / calc(100% - 2.5rem) 1px no-repeat,
+    linear-gradient(var(--rumor-ink), var(--rumor-ink)) bottom 0.75rem left 1.25rem / calc(100% - 2.5rem) 1px no-repeat,
+    var(--rumor-grain),
+    var(--rumor-paper-light);
+  color: var(--rumor-ink);
+  font-family: var(--rumor-headline);
+  font-size: clamp(1.375rem, 6vw, 2rem);
+  font-style: italic;
+  font-weight: 800;
+  line-height: 1.15;
+  text-wrap: balance;
+  box-shadow:
+    0 0.0625rem 0 rgb(0 0 0 / 10%),
+    0.25rem 0.5rem 1rem rgb(60 40 20 / 22%);
+  transform: rotate(-1.2deg);
+}
+
+.game-rumor .rumor-text::before {
+  content: "";
+  position: absolute;
+  top: -0.875rem;
+  left: 50%;
+  width: 6.5rem;
+  height: 1.625rem;
+  background: var(--rumor-tape);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 12%);
+  transform: translateX(-50%) rotate(3deg);
+  clip-path: polygon(2% 0, 98% 6%, 100% 30%, 97% 55%, 100% 100%, 1% 94%, 3% 60%, 0 30%);
+}
+
+.game-rumor .rumor-text::after {
+  content: "Source : un ami d'un ami";
+  font-family: var(--rumor-typewriter);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--rumor-ink-faded);
+}
+
+.game-rumor .rumor-progress {
+  position: relative;
+  height: 1.125rem;
+  margin: 0 0.5rem;
+  border: 1px solid var(--rumor-ink);
+  background: var(--rumor-paper-light);
+  box-shadow: 0.125rem 0.125rem 0 var(--rumor-ink);
+  overflow: hidden;
+}
+
+.game-rumor .rumor-progress-fill {
+  height: 100%;
+  background:
+    var(--rumor-halftone) 0 0 / 0.375rem 0.375rem,
+    var(--rumor-blood);
+  color: rgb(0 0 0 / 25%);
+  transform-origin: left;
+}
+
+.game-rumor .rumor-progress-label {
+  margin: -0.375rem 0 0;
+  font-family: var(--rumor-typewriter);
+  font-size: 0.8125rem;
+  color: var(--rumor-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.game-rumor .rumor-level-up {
+  margin: 0 0.5rem;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--rumor-ink);
+  border-radius: 0;
+  background: var(--rumor-blood);
+  color: var(--rumor-paper-light);
+  font-family: var(--rumor-headline);
+  font-size: 1.0625rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: var(--rumor-offset);
+  transition: transform 60ms, box-shadow 60ms;
+}
+
+.game-rumor .rumor-level-up::before {
+  content: "Stop presse ! ";
+  font-family: var(--rumor-typewriter);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.game-rumor .rumor-level-up:active {
+  transform: translate(0.2rem, 0.2rem);
+  box-shadow: none;
+}
+
+.game-rumor .rumor-level-up[hidden] {
+  display: none;
+}
+
+.game-rumor .rumor-whisper {
+  position: relative;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.125rem;
+  width: min(100%, 20rem);
+  min-height: 6.5rem;
+  margin: 0.5rem 0 0.25rem;
+  padding: 1rem 1rem 0.875rem;
+  border-radius: 0;
+  background:
+    linear-gradient(315deg, var(--rumor-paper) 0 0.9rem, var(--rumor-postit-dark) 0.9rem 1.2rem, transparent 1.2rem),
+    linear-gradient(180deg, rgb(255 255 255 / 25%), transparent 30%),
+    var(--rumor-postit);
+  color: var(--rumor-ink);
+  font-family: var(--rumor-hand);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0.1875rem 0.375rem 0.75rem rgb(60 40 20 / 28%);
+  transform: rotate(1.5deg);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    transform 60ms,
+    box-shadow 60ms;
+}
+
+.game-rumor .rumor-whisper::before {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d9675e, var(--rumor-blood) 60%, #5e1611);
+  box-shadow: 0.125rem 0.25rem 0.25rem rgb(0 0 0 / 30%);
+  transform: translateX(-50%);
+}
+
+.game-rumor .rumor-whisper:active {
+  transform: rotate(1.5deg) scale(0.95);
+  box-shadow: 0.0625rem 0.125rem 0.25rem rgb(60 40 20 / 28%);
+}
+
+.game-rumor .rumor-whisper-power {
+  font-family: var(--rumor-typewriter);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--rumor-ink-soft);
+}
+
+.game-rumor .panel {
+  padding: 1rem 0.75rem;
+}
+
+.game-rumor .shop {
+  gap: 0.75rem;
+}
+
+.game-rumor .shop::before {
+  content: "Petites annonces";
+  padding-bottom: 0.25rem;
+  border-bottom: 3px double var(--rumor-ink);
+  font-family: var(--rumor-headline);
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-style: italic;
+  text-align: center;
+}
+
+.game-rumor .shop-item {
+  gap: 0.25rem 0.875rem;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--rumor-ink);
+  border-radius: 0;
+  background:
+    var(--rumor-grain),
+    var(--rumor-paper-light);
+  box-shadow: var(--rumor-offset);
+  color: var(--rumor-ink);
+}
+
+.game-rumor .shop-item:not(:disabled):active {
+  transform: translate(0.2rem, 0.2rem);
+  box-shadow: none;
+}
+
+.game-rumor .shop-item:disabled {
+  border-color: var(--rumor-ink-faded);
+  border-style: dashed;
+  background: transparent;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.game-rumor .shop-item-name {
+  font-family: var(--rumor-headline);
+  font-size: 1.0625rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.game-rumor .shop-item-details {
+  font-family: var(--rumor-typewriter);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--rumor-ink-soft);
+}
+
+.game-rumor .shop-item-cost {
+  min-width: 4.5rem;
+  padding: 0.375rem 0.5rem;
+  border: 2px solid var(--rumor-blood);
+  border-radius: 0;
+  background: transparent;
+  color: var(--rumor-blood);
+  font-family: var(--rumor-typewriter);
+  font-weight: 400;
+  text-align: center;
+  transform: rotate(-3deg);
+}
+
+.game-rumor .shop-item:disabled .shop-item-cost {
+  border-color: var(--rumor-ink-faded);
+  background: transparent;
+  color: var(--rumor-ink-faded);
+}
+
+.game-rumor .tabs {
+  gap: 0;
+  margin: 0 0.75rem;
+  padding: 0.5rem 0 0.625rem;
+  border-top: 4px double var(--rumor-ink);
+}
+
+.game-rumor .tabs [role="tab"] {
+  padding: 0.75rem 0.25rem;
+  border: 1px solid var(--rumor-ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--rumor-ink-soft);
+  font-family: var(--rumor-headline);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.game-rumor .tabs [role="tab"] + [role="tab"] {
+  border-left: none;
+}
+
+.game-rumor .tabs [role="tab"][aria-selected="true"] {
+  background: var(--rumor-ink);
+  color: var(--rumor-paper-light);
+  box-shadow: none;
+}
+
+.game-rumor .rumor-debunk {
+  position: absolute;
+  inset: 20% 1rem auto;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1.5rem 1.25rem 1.75rem;
+  border: 2px solid var(--rumor-ink);
+  border-radius: 0;
+  background:
+    var(--rumor-grain),
+    var(--rumor-paper-light);
+  color: var(--rumor-ink);
+  box-shadow:
+    0.375rem 0.375rem 0 var(--rumor-ink),
+    0 1rem 2.5rem rgb(0 0 0 / 35%);
+  overflow: hidden;
+  touch-action: manipulation;
+  animation: rumor-debunk-shake 0.4s;
+}
+
+.game-rumor .rumor-debunk[hidden] {
+  display: none;
+}
+
+.game-rumor .rumor-debunk::before {
+  content: "Rectificatif";
+  align-self: stretch;
+  padding-bottom: 0.25rem;
+  border-bottom: 3px double var(--rumor-ink);
+  font-family: var(--rumor-typewriter);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rumor-ink-faded);
+}
+
+.game-rumor .rumor-debunk strong {
+  align-self: center;
+  padding: 0.125rem 0.875rem;
+  border: 3px solid var(--rumor-blood);
+  border-radius: 0.25rem;
+  color: var(--rumor-blood);
+  font-family: var(--rumor-typewriter);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: rotate(-5deg);
+  mix-blend-mode: multiply;
+}
+
+.game-rumor .rumor-debunk-message {
+  font-family: var(--rumor-headline);
+  font-size: 1.1875rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.game-rumor .rumor-debunk small {
+  font-family: var(--rumor-typewriter);
+  font-size: 0.8125rem;
+  color: var(--rumor-ink-soft);
+}
+
+.game-rumor .rumor-debunk-timer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0.5rem;
+  background:
+    var(--rumor-halftone) 0 0 / 0.375rem 0.375rem,
+    var(--rumor-blood);
+  color: rgb(0 0 0 / 25%);
+  transform-origin: left;
+}
+
+@keyframes rumor-debunk-shake {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-3deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(3deg) scale(1.05);
+  }
+}
+
+@media (hover: hover) {
+  body[data-game="rumor"] .nav-chip:hover,
+  body[data-game="rumor"] .nav-home:hover,
+  .game-rumor button:not(:disabled):hover {
+    filter: none;
+  }
+
+  body[data-game="rumor"] .nav-home:hover {
+    filter: grayscale(1) contrast(1.2);
+  }
+
+  .game-rumor .shop-item:not(:disabled):hover,
+  .game-rumor .tabs [role="tab"]:not([aria-selected="true"]):hover {
+    background-color: var(--rumor-paper-dark);
+  }
+}
+
+@media (min-width: 60rem) {
+  body[data-game="rumor"] .nav-bar,
+  body[data-game="rumor"] .game-bar {
+    margin: 0 1.5rem;
+  }
+
+  body[data-game="rumor"] .game-bar {
+    grid-template-columns: 12rem 1fr 12rem;
+    padding: 0.625rem 0 0.375rem;
+  }
+
+  body[data-game="rumor"] .game-bar::before {
+    content: "N° 666\AÉdition de minuit";
+    justify-self: start;
+    padding: 0.375rem 0.625rem;
+    border: 1px solid var(--rumor-ink);
+    color: var(--rumor-ink-soft);
+  }
+
+  body[data-game="rumor"] .game-bar-heading::before {
+    font-size: 0.8125rem;
+  }
+
+  body[data-game="rumor"] .game-bar-title {
+    font-size: 4.25rem;
+  }
+
+  body[data-game="rumor"] .game-bar-bonuses {
+    font-size: 0.8125rem;
+  }
+
+  .game-rumor {
+    margin: 0 1.5rem;
+  }
+
+  .game-rumor > .resources {
+    border-bottom: 1px solid var(--rumor-ink);
+  }
+
+  .game-rumor > .panel {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .game-rumor > .panel + .panel {
+    border-left: 1px solid var(--rumor-ink);
+  }
+
+  .game-rumor .rumor-debunk {
+    inset: 18% auto auto 50%;
+    width: 26rem;
+    margin-left: -13rem;
+  }
+}
